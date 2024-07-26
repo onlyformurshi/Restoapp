@@ -13,7 +13,7 @@ function NavBar() {
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><a className="nav-link" href="#">Home</a></li>
                             <li className="nav-item"><a className="nav-link" href="#">Recipes</a></li>
-                            <li className="nav-item"><a className="nav-link" href="#">Categories</a></li>
+                            <li className="nav-item"><a className="nav-link" href="#">Categories 1</a></li>
                             <li className="nav-item"><a className="nav-link" href="#">About</a></li>
                         </ul>
                     </div>
