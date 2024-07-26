@@ -1,0 +1,278 @@
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #2ecc71;
+    --text-color: #fff;
+    --light-bg: #000;
+}
+
+.menu-food body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+
+/* Navbar Styles */
+.menu-food .navbar {
+    background-color: black !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.menu-food .navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color) !important;
+}
+
+.menu-food .nav-link {
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+    color: #fff !important;
+}
+
+.menu-food .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.menu-food .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.menu-food .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Banner Styles */
+.menu-food .banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    position: relative;
+}
+
+.menu-food .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.menu-food .banner h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.menu-food .banner p {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Special Dishes Styles */
+.menu-food .special-dishes-section {
+    background-color: var(--light-bg);
+}
+
+.menu-food .special-dish-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #333;
+}
+
+.menu-food .special-dish-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.menu-food .special-dish-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.menu-food .special-dish-card .card-body {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.menu-food .special-dish-card .card-title {
+    color: #e74c3c;
+    font-weight: bold;
+}
+.menu-food .special-dish-card .card-text {
+    color: #fff;
+}
+
+.menu-food .dish-rating {
+    color: #ffd700;
+}
+
+/* Category Styles */
+.menu-food .category-section {
+    background-color: #000;
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+}
+
+.menu-food .category-item {
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.menu-food .category-item:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-5px);
+}
+.menu-food .category-item.active {
+    background-color: var(--secondary-color);
+    transform: translateY(-5px);
+}
+
+
+.menu-food .category-item:hover .card-title {
+    color: white;
+}
+
+.menu-food .category-item .card-body {
+    padding: 2rem;
+}
+
+.menu-food .category-item .card-title {
+    font-weight: bold;
+    transition: color 0.3s;
+    color: #fff;
+}
+
+.menu-food .category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    transition: color 0.3s;
+}
+
+.menu-food .category-item:hover .category-icon {
+    color: white;
+}
+
+/* Section Titles */
+.menu-food .section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.menu-food .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+/* Featured Recipe */
+.menu-food .featured-recipe {
+    background-color: var(--light-bg);
+    padding: 4rem 0;
+}
+
+.menu-food .featured-recipe-img {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.menu-food .featured-recipe-content {
+    padding: 2rem;
+    background-color: #333;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.menu-food .footer {
+    background-color: #333;
+    color: white;
+    padding: 3rem 0;
+}
+
+.menu-food .footer-title {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.menu-food .footer-link {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.menu-food .footer-link:hover {
+    color: white;
+}
+
+.menu-food .social-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.menu-food .social-icon:hover {
+    color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-food .fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .menu-food .banner h1 {
+        font-size: 2.5rem;
+    }
+
+    .menu-food .banner p {
+        font-size: 1.2rem;
+    }
+}
