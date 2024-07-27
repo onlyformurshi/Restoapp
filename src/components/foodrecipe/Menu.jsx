@@ -9,17 +9,19 @@ import ReciepCategory from './ReciepCategory';
 
 const API_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?f=c';
 const API_URL_catogory = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+const API_URL_filter_catogory ='https://www.themealdb.com/api/json/v1/1/filter.php?c=beef'
 function Menu() {
     const [dishes, setDishes] = useState([]);
     const [dishesCatogory, setDishesCatogory] = useState([]);
     const [loading, setloading] = useState(false);
-  
+    const [DishesFilterCatogory, setDishesFilterCatogory] = useState([]);
+
 
     useEffect(() => {
         setloading(true);
         axios.get(API_URL)
             .then(response => {
-               
+
                 setDishes(response.data.meals);
             })
             .catch(error => {
@@ -30,7 +32,7 @@ function Menu() {
             });
     }, []);
     useEffect(() => {
-       
+
         axios.get(API_URL_catogory)
             .then(response => {
                 console.log(response);
@@ -39,14 +41,26 @@ function Menu() {
             .catch(error => {
                 console.error('Error fetching data:', error);
             })
-            
+
+    }, []);
+    useEffect(() => {
+
+        axios.get(API_URL_filter_catogory)
+            .then(response => {
+                console.log(response,"response filter category");
+                setDishesFilterCatogory(response.data.meals);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            })
+
     }, []);
     return (
         <div className="menu-food">
             <NavBar />
             <Banner />
             <SpecialProduct Loading={loading} dishes={dishes} />
-            <ReciepCategory dishes={dishes}  categories={dishesCatogory} />
+            <ReciepCategory DishesFilterCatogory={DishesFilterCatogory} dishes={dishes} categories={dishesCatogory} />
         </div>
     );
 }

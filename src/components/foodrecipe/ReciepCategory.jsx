@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils } from '@fortawesome/free-solid-svg-icons';
-import Discard from './Discard';
-
-function RecipeCategory({ categories, dishes }) {
+import React, { useState, useEffect } from 'react';
+import CategoryList from './CategoryList';
+import DishList from './DishList';
+import Pagination from './Pagination';
+function RecipeCategory({ categories, dishes, DishesFilterCatogory }) {
     const [filteredCategories, setFilteredCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState("Beef");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 4;
 
-    // Extract unique categories
-    const uniqueCategories = Array.from(new Set(categories.map(dish => dish.strCategory)))
-        .map(category => {
-            return categories.find(dish => dish.strCategory === category);
-        });
+    // Set default filtered categories on mount
+    useEffect(() => {
+        const chickenObj = dishes.filter(meal => meal.strCategory === 'Beef');
+        setFilteredCategories(chickenObj);
+
+        setCurrentPage(1);
+
+
+    }, [DishesFilterCatogory, dishes]);
 
     const handleCategories = (name) => {
         const filtered = dishes.filter(dish => dish.strCategory === name);
         setFilteredCategories(filtered);
         setSelectedCategory(name);
+        setCurrentPage(1);
     };
+    const indexOfLastDish = currentPage * itemsPerPage;
+    const indexOfFirstDish = indexOfLastDish - itemsPerPage;
+    const currentDishes = filteredCategories.slice(indexOfFirstDish, indexOfLastDish);
+    const totalPages = Math.ceil(filteredCategories.length / itemsPerPage);
+
 
     return (
         <>
@@ -25,45 +36,23 @@ function RecipeCategory({ categories, dishes }) {
                 <section className="py-5 category-section">
                     <div className="container">
                         <h2 className="text-center mb-4 section-title">Recipe Categories</h2>
-                        <div className="row">
-                            {uniqueCategories.map((dish, index) => (
-                                <div className="col-md-3 mb-3" key={index}>
-                                    <div 
-                                        className={`card category-item ${selectedCategory === dish.strCategory ? 'active' : ''}`} 
-                                        onClick={() => handleCategories(dish.strCategory)}
-                                    >
-                                        <div className="card-body text-center">
-                                            <FontAwesomeIcon className='category-icon' icon={faUtensils} />
-                                            <h5 className="card-title">{dish.strCategory}</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <CategoryList selectedCategory={selectedCategory} categories={categories} onCategorySelect={handleCategories} />
                     </div>
                 </section>
             </div>
-            {selectedCategory && (
-                <section className="py-5 special-dishes-section">
-                    <div className="container">
-                        <h2 className="text-center mb-4 section-title">Filtered Dishes</h2>
-                        <div className="row">
-                            {filteredCategories.length > 0 ? (
-                                filteredCategories.map((dish, index) => (
-                                    <Discard
-                                        key={index}
-                                        title={dish.strMeal}
-                                        description={dish.strInstructions}
-                                        imgSrc={dish.strMealThumb}
-                                    />
-                                ))
-                            ) : (
-                                <p className="text-center text-white">No dishes available for the selected category.</p>
-                            )}
-                        </div>
-                    </div>
-                </section>
-            )}
+
+            <section className="py-5 special-dishes-section">
+                <div className="container">
+                    <h2 className="text-center mb-4 section-title">Filtered Dishes</h2>
+                    <DishList filteredCategories={filteredCategories} />
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
+                </div>
+            </section>
+
         </>
     );
 }
