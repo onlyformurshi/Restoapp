@@ -6,33 +6,15 @@ import Banner from './Banner';
 import SpecialProduct from './SpecialProduct';
 import axios from 'axios';
 import ReciepCategory from './ReciepCategory';
-
-const API_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?f=c';
+import {AllMenu} from './AllMenuContext';
 const API_URL_catogory = 'https://www.themealdb.com/api/json/v1/1/categories.php';
-const API_URL_filter_catogory ='https://www.themealdb.com/api/json/v1/1/filter.php?c=beef'
+const API_URL_filter_catogory = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=beef'
 function Menu() {
-    const [dishes, setDishes] = useState([]);
     const [dishesCatogory, setDishesCatogory] = useState([]);
     const [loading, setloading] = useState(false);
     const [DishesFilterCatogory, setDishesFilterCatogory] = useState([]);
-
-
+    
     useEffect(() => {
-        setloading(true);
-        axios.get(API_URL)
-            .then(response => {
-
-                setDishes(response.data.meals);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            })
-            .finally(() => {
-                setloading(false);
-            });
-    }, []);
-    useEffect(() => {
-
         axios.get(API_URL_catogory)
             .then(response => {
                 console.log(response);
@@ -41,26 +23,25 @@ function Menu() {
             .catch(error => {
                 console.error('Error fetching data:', error);
             })
-
     }, []);
     useEffect(() => {
-
         axios.get(API_URL_filter_catogory)
             .then(response => {
-                console.log(response,"response filter category");
+                console.log(response, "response filter category");
                 setDishesFilterCatogory(response.data.meals);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             })
-
     }, []);
     return (
         <div className="menu-food">
             <NavBar />
             <Banner />
-            <SpecialProduct Loading={loading} dishes={dishes} />
-            <ReciepCategory DishesFilterCatogory={DishesFilterCatogory} dishes={dishes} categories={dishesCatogory} />
+            <AllMenu>
+                <SpecialProduct Loading={loading} />
+                <ReciepCategory DishesFilterCatogory={DishesFilterCatogory} categories={dishesCatogory} />
+            </AllMenu>
         </div>
     );
 }

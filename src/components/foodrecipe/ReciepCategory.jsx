@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useContext} from 'react';
 import CategoryList from './CategoryList';
 import DishList from './DishList';
 import Pagination from './Pagination';
-function RecipeCategory({ categories, dishes, DishesFilterCatogory }) {
+import {AllMenuContext} from "./AllMenuContext";
+function RecipeCategory({ categories, DishesFilterCatogory }) {
+    const dishes = useContext(AllMenuContext);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("Beef");
     const [currentPage, setCurrentPage] = useState(1);

@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import React from 'react'
 import Discard from './Discard';
 import { Spinner } from 'react-bootstrap';
-function SpecialProduct({ dishes, Loading }) {
+import {AllMenuContext} from "./AllMenuContext";
+function SpecialProduct({Loading }) {
     let productcount = 8
+
+    const dishes = useContext(AllMenuContext)
 
     return (
         <div>
