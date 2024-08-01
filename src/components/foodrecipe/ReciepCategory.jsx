@@ -1,14 +1,31 @@
-import React, { useState, useEffect , useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CategoryList from './CategoryList';
 import DishList from './DishList';
 import Pagination from './Pagination';
-import {AllMenuContext} from "./AllMenuContext";
-function RecipeCategory({ categories, DishesFilterCatogory }) {
+import { AllMenuContext } from "./AllMenuContext";
+import axios from 'axios';
+const API_URL_catogory = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+
+function RecipeCategory() {
     const dishes = useContext(AllMenuContext);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("Beef");
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
+    const [DishesFilterCatogory, setDishesFilterCatogory] = useState([]);
+    const [dishesCatogory, setDishesCatogory] = useState([]);
+    useEffect(() => {
+        axios.get(API_URL_catogory)
+            .then(response => {
+                console.log(response);
+                setDishesCatogory(response.data.categories);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            })
+    }, []);
+
+
 
     // Set default filtered categories on mount
     useEffect(() => {
@@ -38,7 +55,7 @@ function RecipeCategory({ categories, DishesFilterCatogory }) {
                 <section className="py-5 category-section">
                     <div className="container">
                         <h2 className="text-center mb-4 section-title">Recipe Categories</h2>
-                        <CategoryList selectedCategory={selectedCategory} categories={categories} onCategorySelect={handleCategories} />
+                        <CategoryList selectedCategory={selectedCategory} categories={dishesCatogory} onCategorySelect={handleCategories} />
                     </div>
                 </section>
             </div>
