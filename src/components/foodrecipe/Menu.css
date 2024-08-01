@@ -118,6 +118,7 @@
     color: #e74c3c;
     font-weight: bold;
 }
+
 .menu-food .special-dish-card .card-text {
     color: #fff;
 }
@@ -147,6 +148,7 @@
     background-color: var(--secondary-color);
     transform: translateY(-5px);
 }
+
 .menu-food .category-item.active {
     background-color: var(--secondary-color);
     transform: translateY(-5px);
@@ -275,4 +277,53 @@
     .menu-food .banner p {
         font-size: 1.2rem;
     }
+}
+
+/* custom.css */
+.modal-header {
+    background-color: #f8f9fa;
+}
+
+.modal-body {
+    background-color: #ffffff;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+}
+
+h5 {
+    color: #333;
+}
+
+.button-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.button-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.cat-items {
+    position: fixed;
+    width: 80px;
+    z-index: 100;
+    right: 0;
+}
+
+.cat-items img {
+   
+    width: 80px;
+    z-index: 100;
+  
+    border-radius: 20px;
+}
+
+.cat-items p {
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    margin: 10px 0;
 }

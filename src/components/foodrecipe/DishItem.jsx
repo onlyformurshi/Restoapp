@@ -1,12 +1,12 @@
 import React from 'react';
 import Discard from './Discard';
 
-function DishItem({ dish }) {
+function DishItem({ dish,addtocartHandler }) {
+   
     return (
         <Discard
-            title={dish.strMeal}
-            description={dish.strInstructions}
-            imgSrc={dish.strMealThumb}
+            dish={dish}
+            addtocartHandler={addtocartHandler}
         />
     );
 }

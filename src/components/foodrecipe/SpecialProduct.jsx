@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import React from 'react'
 import Discard from './Discard';
 import { Spinner } from 'react-bootstrap';
-import {AllMenuContext} from "./AllMenuContext";
-function SpecialProduct({Loading }) {
+import { AllMenuContext } from "./AllMenuContext";
+function SpecialProduct({ Loading, addtocartHandler }) {
     let productcount = 8
 
     const dishes = useContext(AllMenuContext)
@@ -22,11 +22,8 @@ function SpecialProduct({Loading }) {
                         <div className="row">
                             {dishes.map((dish, index) => (
                                 index < productcount ? (
-                                    <Discard
-                                        key={index}
-                                        title={dish.strMeal}
-                                        description={dish.strInstructions}
-                                        imgSrc={dish.strMealThumb}
+                                    <Discard addtocartHandler={addtocartHandler}
+                                        dish={dish}
                                     />
                                 ) : null
 
